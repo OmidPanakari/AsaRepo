@@ -14,6 +14,20 @@ namespace Asa.SnakesAndLadder.UI
             Console.WriteLine("Enter number of players:");
             int playerCount = Convert.ToInt32(Console.ReadLine());
             _gameController.CheckPlayerCount(playerCount);
+            for(int i = 0; i < playerCount; i++)
+			{
+                ReadPlayer(i);
+			}
+        }
+
+		private void ReadPlayer(int plyerNumber)
+		{
+			Console.WriteLine($"Player {plyerNumber + 1} :");
+			Console.WriteLine("Enter your name:");
+            string name = Console.ReadLine();
+            Console.WriteLine("Choose your color:");
+            string color = Console.ReadLine();
+            _gameController.AddPlayer(name, color);
         }
 
         private void ReadGameData()
@@ -39,6 +53,7 @@ namespace Asa.SnakesAndLadder.UI
         private void Play()
         {
             MoveResult result;
+            _gameController.Start();
             do
             {
                 Console.Clear();
@@ -55,7 +70,22 @@ namespace Asa.SnakesAndLadder.UI
 
         private void ShowResult(MoveResult result)
         {
-            throw new NotImplementedException();
+			Console.WriteLine($"Dice number is {result.DiceValue}.");
+			Console.WriteLine($"Player {result.Name} moved from position {result.OldPosition} to {result.NewPosition}.");
+            if(result.IsBitten)
+			{
+				Console.WriteLine($"Player {result.Name} is bitten by a snake :(");
+				Console.WriteLine($"Player {result.Name} moved to position {result.UsedShortCut.End}.");
+			}
+            if (result.IsLadderUsed)
+            {
+                Console.WriteLine($"Player {result.Name} used a ladder :)");
+                Console.WriteLine($"Player {result.Name} moved to position {result.UsedShortCut.End}.");
+            }
+            if(result.IsWinner)
+			{
+				Console.WriteLine($"Player {result.Name} wins :)");
+			}
         }
     }
 }

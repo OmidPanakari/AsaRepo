@@ -35,6 +35,7 @@ namespace Asa.SnakesAndLadder.Core
 
         private void AddLadders()
         {
+            _ladders = new List<ShortCut>();
             for(int i = 0; i < _ladderCount; i++)
             {
                 int first = GetEmptyPosition();
@@ -47,6 +48,7 @@ namespace Asa.SnakesAndLadder.Core
 
         private void AddSnakes()
         {
+            _snakes = new List<ShortCut>();
             for (int i = 0; i < _snakeCount; i++)
             {
                 int first = GetEmptyPosition();

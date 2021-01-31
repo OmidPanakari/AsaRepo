@@ -25,7 +25,7 @@ namespace Asa.SnakesAndLadder.Core
 
         public void AddPlayer(string name, string colorName)
         {
-            if (Enum.TryParse(colorName, true, out PlayerColor color))
+            if (!Enum.TryParse(colorName, true, out PlayerColor color))
             {
                 throw new ArgumentException($"{colorName} is not a valid color.");
             }
@@ -37,5 +37,9 @@ namespace Asa.SnakesAndLadder.Core
             int diceValue = _gameEngine.CurrentPlayer.RollDice();
             return _gameEngine.Play(diceValue);
         }
+        public void Start()
+		{
+            _gameEngine.Start();
+		}
     }
 }
