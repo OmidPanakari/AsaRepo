@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Asa.SnakesAndLadder.Core
 {
-	class Board
+	public class Board
 	{
         public int Width { get; }
         public int Height { get; }
@@ -125,7 +125,7 @@ namespace Asa.SnakesAndLadder.Core
         {
             if (Width * Height <= 1)
                 throw new ArgumentOutOfRangeException("Invalid board size.");
-            if (2 * (_ladderCount + _snakeCount) > Width * Height)
+            if (2 * (_ladderCount + _snakeCount) >= Width * Height)
                 throw new ArgumentOutOfRangeException("The size of the board and number of the ladders and snakes are not compatible.");
         }
     }
