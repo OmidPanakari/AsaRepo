@@ -29,5 +29,24 @@ namespace Asa.SnakesAndLadder.Core
 			Random r = new Random();
 			return r.Next(6) + 1;
         }
-    }
+
+		public override bool Equals(object obj)
+		{
+			if (obj is Player player)
+				return Name == player.Name || Color == player.Color;
+			else
+				return false;
+		}
+
+		public static bool operator ==(Player first, Player second)
+		{
+			return first.Equals(second);
+		}
+
+		public static bool operator !=(Player first, Player second)
+		{
+			return !first.Equals(second);
+		}
+
+	}
 }

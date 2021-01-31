@@ -45,9 +45,16 @@ namespace Asa.SnakesAndLadder.UI
 
         internal void Start()
         {
-            ReadGameData();
-            ReadPlayersData();
-            Play();
+            try
+            {
+                ReadGameData();
+                ReadPlayersData();
+                Play();
+            }
+            catch(Exception e)
+			{
+				Console.WriteLine(e.Message);
+			}
         }
 
         private void Play()
