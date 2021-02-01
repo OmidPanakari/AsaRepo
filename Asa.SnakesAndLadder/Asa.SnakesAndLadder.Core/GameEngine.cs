@@ -46,17 +46,9 @@ namespace Asa.SnakesAndLadder.Core
             }
         }
 
-        internal MoveResult Play(int diceValue)
+        internal MoveResult Play()
         {
-			MoveResult result = _board.Move(CurrentPlayer.Position, diceValue);
-			result.DiceValue = diceValue;
-			result.Name = CurrentPlayer.Name;
-			result.Color = CurrentPlayer.Color;
-			CurrentPlayer.Position = result.NewPosition;
-			if(result.IsBitten || result.IsLadderUsed)
-			{
-				CurrentPlayer.Position = result.UsedShortCut.End;
-			}
+			MoveResult result = CurrentPlayer.Move(_board);
 			_currentPlayer = (_currentPlayer + 1) % _players.Count();
 			return result;
         }

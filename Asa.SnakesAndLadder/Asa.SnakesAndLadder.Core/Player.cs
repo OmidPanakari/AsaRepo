@@ -30,12 +30,32 @@ namespace Asa.SnakesAndLadder.Core
 			return r.Next(6) + 1;
         }
 
+		internal MoveResult Move(Board board)
+		{
+			int diceValue = RollDice();
+			MoveResult result = board.Move(Position, diceValue);
+			result.DiceValue = diceValue;
+			result.Name = Name;
+			result.Color = Color;
+			Position = result.NewPosition;
+			if (result.IsBitten || result.IsLadderUsed)
+			{
+				Position = result.UsedShortCut.End;
+			}
+			return result;
+		}
+
 		public override bool Equals(object obj)
 		{
 			if (obj is Player player)
 				return Name == player.Name || Color == player.Color;
 			else
 				return false;
+		}
+
+		public override int GetHashCode()
+		{
+			return HashCode.Combine(this);
 		}
 
 		public static bool operator ==(Player first, Player second)

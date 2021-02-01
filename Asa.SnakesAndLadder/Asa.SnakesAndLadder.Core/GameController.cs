@@ -34,8 +34,7 @@ namespace Asa.SnakesAndLadder.Core
 
         public MoveResult PlayeTurn()
         {
-            int diceValue = _gameEngine.CurrentPlayer.RollDice();
-            return _gameEngine.Play(diceValue);
+            return _gameEngine.Play();
         }
         public void Start()
 		{
